@@ -2,16 +2,24 @@
     <string name="app_name">London, ON</string>
     <string name=""></string>
 
-    <string name="mall_category">Shopping Centres</string>
     <string name="restaurant_category">Restaurants</string>
+    <string name="western_category">WesternU Highlights</string>
     <string name="grocery_category">Grocery</string>
-    <string name="trails_category">Hiking/Walking Trails</string>
+    <string name="must_see_category">Must-Sees</string>
 
-    <string name="white_oaks_title">White Oaks Mall</string>
-    <string name="white_oaks_description"></string>
-    <string name="white_oaks_address">1105 Wellington Rd, London, ON N6E 1V4</string>
+    <string name="yasmines_title">Yasmine\'s Restaurant</string>
+    <string name="yasmines_description">Yasmine\'s is a lovely Lebanese restaurant which offers a large variety of high-quality dishes. A highlight of the experience is the stone oven, in which fresh pita is made and served hot. The service is, frankly, horrible. But the food is so delicious that it\'s difficult to boycott them completely. Thus, I suggest maintaining healthy boundaries and going only once every few months. However, it can be expected that you might receive the wrong dish, the wait might be very long, and the staff might forget about your order completely.</string>
+    <string name="yasmines_address">Hylands Centre, 1737 Richmond Street #102</string>
 
-    <string name="masonville_title">CF Masonville Place</string>
-    <string name="masonville_description"></string>
-    <string name="masonville_address">1680 Richmond St, London, ON N6G 3Y9</string>
+    <string name="_168_title">168 Sushi Asian Buffet Bar</string>
+    <string name="_168_description">168 has a special place in my heart, as it is where my partner and I went on our first date. Menu items that must be ordered are as follows: cheese wontons (as many as fit in your stomach, then maybe some more), crispy ginger beef, and the farmer\'s roll. The restaurant is all-you-can-eat style, and a little robot brings out the dishes! You haven\'t eaten enough if you don\'t have to roll yourself out of the restaurant in a state of nausea.</string>
+    <string name="_168_address">660 Oxford Street West</string>
+
+    <string name="beertown_title">Beertown Public House</string>
+    <string name="beertown_description">Despite its unimaginative name, Beertown Public House offers some of the most delicious food in London. What truly can be spoken about is the restaurant\'s consistency; you can order anything on the menu at any time and the food is guaranteed to blow your mind. Service is always fast, friendly, and helpful. To take advantage of Beertown\'s extensive alcohol menu, I would suggest ordering a paddle (or three) in which you can try four different beers. If you\'re feeling brave, order the Beermageddon Paddletron 3000, which contains 30 beers. Just make sure you have a designated driver!</string>
+    <string name="beertown_address">109 Fanshawe Park Road East</string>
+
+    <string name="spageddy_title">Spageddy Eddy\'s</string>
+    <string name="spageddy_description">The only thing going for Spageddy Eddy\'s is its strange, yet friendly vibe. If it is a high-quality restaurant that you\'re looking for, you\'d be better off somewhere else. And, under no circumstances, order spaghetti with white sauce or saganaki (you\'ve been warned). Even someone who\'s never cooked in their life could put together a better dish than what's served at Spageddy Eddy\'s. However, there is something charming about this little basement restaurant. The staff is welcoming, you can order pasta with pineapple chunks, and the portion sizes are enormous.</string>
+    <string name="spageddy_address">428 Richmond Street</string>
 </resources>
