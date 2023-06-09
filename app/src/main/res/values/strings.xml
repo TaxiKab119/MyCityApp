@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">London, Ontario, Canada</string>
+    <string name=""></string>
+
+    <string name="mall_category">Shopping Centres</string>
+    <string name="restaurant_category">Restaurants</string>
+    <string name="grocery_category">Grocery</string>
+    <string name="trails_category">Hiking/Walking Trails</string>
+
+    <string name="white_oaks_title">White Oaks Mall</string>
+    <string name="white_oaks_description"></string>
+    <string name="white_oaks_address">1105 Wellington Rd, London, ON N6E 1V4</string>
+
+    <string name="masonville_title">CF Masonville Place</string>
+    <string name="masonville_description"></string>
+    <string name="masonville_address">1680 Richmond St, London, ON N6G 3Y9</string>
+</resources>
