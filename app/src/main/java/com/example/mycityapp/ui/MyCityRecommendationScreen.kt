@@ -27,6 +27,16 @@ import com.example.mycityapp.model.Recommendation
 
 /* TODO */
 @Composable
+fun RecommendationListAndDetail(
+    myCityUiState: MyCityUiState,
+    onRecommendationCardPressed: (Recommendation) -> Unit,
+    modifier: Modifier = Modifier
+) {
+}
+
+
+/* TODO */
+@Composable
 fun RecommendationListOnly(
     myCityUiState: MyCityUiState,
     onRecommendationCardPressed: (Recommendation) -> Unit,
