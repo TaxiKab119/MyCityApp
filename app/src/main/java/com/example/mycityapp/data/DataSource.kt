@@ -45,6 +45,20 @@ object DataSource {
             )
         )
     }
+    /*TODO*/
+    fun getGroceryData(): List<Recommendation> {
+        return listOf(
+
+        )
+    }
+    /*TODO*/
+    fun getWesternData(): List<Recommendation> {
+        return listOf()
+    }
+    /*TODO*/
+    fun getMustSeeData(): List<Recommendation> {
+        return listOf()
+    }
 
     val defaultCategory: Category = getCategoryData()[0]
     fun getCategoryData(): List<Category> {

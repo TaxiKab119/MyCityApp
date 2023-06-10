@@ -1,11 +1,19 @@
 package com.example.mycityapp.ui
 
+import android.media.MediaRouter.RouteCategory
+import androidx.annotation.StringRes
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.ViewModel
+import com.example.mycityapp.R
 import com.example.mycityapp.data.DataSource
 import com.example.mycityapp.data.MyCityUiState
+import com.example.mycityapp.model.Category
+import com.example.mycityapp.model.Recommendation
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 
 class MyCityViewModel : ViewModel() {
 
@@ -20,8 +28,11 @@ class MyCityViewModel : ViewModel() {
      * Set the category that is clicked by the user
      * */
     /* TODO */
-    fun setCategory() {
-
+    fun setCategory(selectedCategory: Category) {
+        _uiState.update {
+            it.copy(currentCategory = selectedCategory)
+        }
+        updateRecommendationListData(selectedCategory.titleResourceId)
     }
 
     /**
@@ -30,5 +41,20 @@ class MyCityViewModel : ViewModel() {
     /* TODO */
     fun setRecommendation() {
 
+    }
+
+    private fun updateRecommendationListData(@StringRes categoryTitleId: Int) {
+
+        val recommendationList: List<Recommendation> = when (categoryTitleId) {
+            R.string.restaurant_category -> DataSource.getRestaurantData()
+            R.string.grocery_category -> DataSource.getGroceryData()
+            R.string.western_category -> DataSource.getWesternData()
+            R.string.must_see_category -> DataSource.getMustSeeData()
+            else -> DataSource.getRestaurantData()
+        }
+
+        _uiState.update {
+            it.copy(recommendationList = recommendationList)
+        }
     }
 }

@@ -78,5 +78,10 @@ fun MyCityApp(
         else -> MyCityAppContentType.LIST_ONLY
     }
 
+    CategoryListContent(
+        categoryList = uiState.categoryList,
+        onCardClick = { viewModel.setCategory(it) }
+    )
+
 
 }

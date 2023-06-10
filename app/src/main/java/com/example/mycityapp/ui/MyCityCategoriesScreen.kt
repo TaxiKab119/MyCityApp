@@ -1,5 +1,6 @@
 package com.example.mycityapp.ui
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -27,7 +28,7 @@ import com.example.mycityapp.model.Category
 fun CategoryListContent(
     categoryList: List<Category>,
     modifier: Modifier = Modifier,
-    onCardClick: () -> Unit = {},
+    onCardClick: (Category) -> Unit,
 ) {
     LazyColumn(modifier = modifier) {
         items(categoryList) {category ->
@@ -46,18 +47,18 @@ fun CategoryListContent(
 fun CategoryCard(
     category: Category,
     selected: Boolean,
-    onCardClick: () -> Unit,
+    onCardClick: (Category) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = modifier,
+        modifier = modifier
+            .clickable { onCardClick },
         colors = CardDefaults.cardColors(
             containerColor = if (selected)
                 MaterialTheme.colorScheme.primaryContainer
             else
                 MaterialTheme.colorScheme.secondaryContainer
-        ),
-        onClick = onCardClick
+        )
     ) {
         Row(
             modifier = Modifier
@@ -99,6 +100,8 @@ fun CategoryCardPreview() {
 fun CategoryListContentPreview() {
     MyCityAppTheme {
         CategoryListContent(
-            categoryList = DataSource.getCategoryData())
+            categoryList = DataSource.getCategoryData(),
+            onCardClick = { Category -> }
+        )
     }
 }
