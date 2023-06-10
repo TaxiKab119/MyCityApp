@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">London, ON</string>
-    <string name=""></string>
 
     <string name="restaurant_category">Restaurants</string>
     <string name="western_category">WesternU Highlights</string>
@@ -20,6 +19,6 @@
     <string name="beertown_address">109 Fanshawe Park Road East</string>
 
     <string name="spageddy_title">Spageddy Eddy\'s</string>
-    <string name="spageddy_description">The only thing going for Spageddy Eddy\'s is its strange, yet friendly vibe. If it is a high-quality restaurant that you\'re looking for, you\'d be better off somewhere else. And, under no circumstances, order spaghetti with white sauce or saganaki (you\'ve been warned). Even someone who\'s never cooked in their life could put together a better dish than what's served at Spageddy Eddy\'s. However, there is something charming about this little basement restaurant. The staff is welcoming, you can order pasta with pineapple chunks, and the portion sizes are enormous.</string>
+    <string name="spageddy_description">The only thing going for Spageddy Eddy\'s is its strange, yet friendly vibe. If it is a high-quality restaurant that you\'re looking for, you\'d be better off somewhere else. And, under no circumstances, order spaghetti with white sauce or saganaki (you\'ve been warned). Even someone who\'s never cooked in their life could put together a better dish than what\'s served at Spageddy Eddy\'s. However, there is something charming about this little basement restaurant. The staff is welcoming, you can order pasta with pineapple chunks, and the portion sizes are enormous.</string>
     <string name="spageddy_address">428 Richmond Street</string>
 </resources>

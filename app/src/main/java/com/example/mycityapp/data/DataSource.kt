@@ -1,6 +1,9 @@
 package com.example.mycityapp.data
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material3.Icon
 import com.example.mycityapp.R
+import com.example.mycityapp.model.Category
 import com.example.mycityapp.model.Recommendation
 
 /*
@@ -10,7 +13,7 @@ import com.example.mycityapp.model.Recommendation
 object DataSource {
     val defaultRecommendation: Recommendation = getRestaurantData()[0]
 
-    private fun getRestaurantData(): List<Recommendation> {
+    fun getRestaurantData(): List<Recommendation> {
         return listOf(
             Recommendation(
                 id = 1,
@@ -39,6 +42,28 @@ object DataSource {
                 addressResourceId = R.string.spageddy_address,
                 descriptionResourceId = R.string.spageddy_description,
                 imageResourceId = R.drawable.restaurant4,
+            )
+        )
+    }
+
+    val defaultCategory: Category = getCategoryData()[0]
+    fun getCategoryData(): List<Category> {
+        return listOf(
+            Category(
+                titleResourceId = R.string.restaurant_category,
+                icon = R.drawable.restaurant_icon
+            ),
+            Category(
+                titleResourceId = R.string.grocery_category,
+                icon = R.drawable.grocery_icon
+            ),
+            Category(
+                titleResourceId = R.string.western_category,
+                icon = R.drawable.school_icon
+            ),
+            Category(
+                titleResourceId = R.string.must_see_category,
+                icon = R.drawable.must_see_icon
             )
         )
     }
