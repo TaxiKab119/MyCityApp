@@ -7,7 +7,7 @@ data class MyCityUiState (
     /** Selected Category*/
     val currentCategory: Category = DataSource.defaultCategory,
     val currentRecommendation: Recommendation = DataSource.defaultRecommendation,
-    val categoryList: List<Category> = emptyList(),
+    val categoryList: List<Category> = DataSource.getCategoryData(),
     val recommendationList: List<Recommendation> = emptyList(),
     val isShowingListPage: Boolean = true
 )

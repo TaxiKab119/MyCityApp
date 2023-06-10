@@ -1,12 +1,15 @@
 package com.example.mycityapp.ui
 
 import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -18,6 +21,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.mycityapp.R
@@ -30,8 +35,8 @@ enum class MyCityScreen(val route: String) {
 }
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun myCityAppBar(
-    currentScreen: MyCityScreen,
+fun MyCityAppBar(
+//    currentScreen: MyCityScreen,
     canNavigateBack: Boolean,
     navigateUp: () -> Unit = {},
     modifier: Modifier = Modifier
@@ -56,6 +61,7 @@ fun myCityAppBar(
 }
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyCityApp(
     windowSize: WindowWidthSizeClass,
@@ -64,24 +70,50 @@ fun MyCityApp(
     modifier: Modifier = Modifier
 ) {
     val backStackEntry by navController.currentBackStackEntryAsState()
-    val currentScreen = MyCityScreen.valueOf(
-        backStackEntry?.destination?.route ?: MyCityScreen.CATEGORY.route
-    )
+//    val currentScreen = MyCityScreen.valueOf(
+//        backStackEntry?.destination?.route ?: MyCityScreen.CATEGORY.name
+//    )
 
     val uiState by viewModel.uiState.collectAsState()
 
-    /** show content based on the window size **/
-    val contentType = when (windowSize) {
-        WindowWidthSizeClass.Compact,
-        WindowWidthSizeClass.Medium -> MyCityAppContentType.LIST_ONLY
-        WindowWidthSizeClass.Expanded -> MyCityAppContentType.LIST_AND_DETAIL
-        else -> MyCityAppContentType.LIST_ONLY
-    }
+//    /** show content based on the window size **/
+//    val contentType = when (windowSize) {
+//        WindowWidthSizeClass.Compact,
+//        WindowWidthSizeClass.Medium -> MyCityAppContentType.LIST_ONLY
+//        WindowWidthSizeClass.Expanded -> MyCityAppContentType.LIST_AND_DETAIL
+//        else -> MyCityAppContentType.LIST_ONLY
+//    }
+    Scaffold(
+        topBar = {
+            MyCityAppBar(
+                canNavigateBack = navController.previousBackStackEntry != null,
+                navigateUp = { navController.navigateUp() }
+            )
+        }
+    ) { innerPadding ->
+        NavHost(
+            navController = navController,
+            startDestination = MyCityScreen.CATEGORY.name,
+            modifier = Modifier.padding(innerPadding)
+        ) {
+            composable(route = MyCityScreen.CATEGORY.name) {
+                CategoryListScreen(
+                    categoryList = uiState.categoryList,
+                    onCardClick = {
+                        viewModel.setCategory(it)
+                        navController.navigate(MyCityScreen.RECOMMENDATION.name)
+                    }
+                )
+            }
+            composable(route = MyCityScreen.RECOMMENDATION.name) {
+                RecommendationListOnly(
+                    myCityUiState = uiState,
+                    onCardClick = {}
+                )
+            }
+        }
 
-    CategoryListContent(
-        categoryList = uiState.categoryList,
-        onCardClick = { viewModel.setCategory(it) }
-    )
+    }
 
 
 }

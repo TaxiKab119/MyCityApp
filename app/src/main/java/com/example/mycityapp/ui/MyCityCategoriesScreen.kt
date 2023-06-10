@@ -12,6 +12,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,7 +26,7 @@ import com.example.mycityapp.data.DataSource
 import com.example.mycityapp.model.Category
 
 @Composable
-fun CategoryListContent(
+fun CategoryListScreen(
     categoryList: List<Category>,
     modifier: Modifier = Modifier,
     onCardClick: (Category) -> Unit,
@@ -35,7 +36,7 @@ fun CategoryListContent(
             CategoryCard(
                 category = category,
                 selected = false,
-                onCardClick = onCardClick,
+                onCardClick = { onCardClick(category) },
                 modifier = Modifier.padding(8.dp)
             )
         }
@@ -52,7 +53,7 @@ fun CategoryCard(
 ) {
     Card(
         modifier = modifier
-            .clickable { onCardClick },
+            .clickable { onCardClick(category) },
         colors = CardDefaults.cardColors(
             containerColor = if (selected)
                 MaterialTheme.colorScheme.primaryContainer
@@ -95,13 +96,27 @@ fun CategoryCardPreview() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Preview(showBackground = true)
 @Composable
 fun CategoryListContentPreview() {
     MyCityAppTheme {
-        CategoryListContent(
-            categoryList = DataSource.getCategoryData(),
-            onCardClick = { Category -> }
-        )
+
+        Scaffold(
+            topBar = {
+                MyCityAppBar(
+                    canNavigateBack = false
+                )
+            }
+        ) { innerPadding ->
+            CategoryListScreen(
+                categoryList = DataSource.getCategoryData(),
+                onCardClick = { Category -> },
+                modifier = Modifier
+                    .padding(innerPadding)
+            )
+        }
+
+
     }
 }
