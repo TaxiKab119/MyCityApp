@@ -40,13 +40,11 @@ fun RecommendationListAndDetail(
 
 
 @Composable
-fun RecommendationListOnly(
-    myCityUiState: MyCityUiState,
+fun RecommendationListScreen(
+    recommendationList: List<Recommendation>,
     onCardClick: (Recommendation) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val recommendationList: List<Recommendation> = myCityUiState.recommendationList
-
     LazyColumn(modifier = modifier) {
         items(recommendationList) {recommendation ->
             RecommendationCard(

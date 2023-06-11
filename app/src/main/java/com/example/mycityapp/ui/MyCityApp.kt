@@ -106,8 +106,8 @@ fun MyCityApp(
                 )
             }
             composable(route = MyCityScreen.RECOMMENDATION.name) {
-                RecommendationListOnly(
-                    myCityUiState = uiState,
+                RecommendationListScreen(
+                    recommendationList = uiState.recommendationList,
                     onCardClick = {}
                 )
             }
