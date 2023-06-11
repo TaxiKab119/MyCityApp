@@ -39,10 +39,11 @@ fun MyCityAppBar(
 //    currentScreen: MyCityScreen,
     canNavigateBack: Boolean,
     navigateUp: () -> Unit = {},
+    @StringRes headerResId: Int,
     modifier: Modifier = Modifier
 ) {
     TopAppBar(
-        title = { Text(text = /*TODO*/ "Placeholder") },
+        title = { Text(text = stringResource(id = headerResId)) },
         colors = TopAppBarDefaults.mediumTopAppBarColors(
             containerColor = MaterialTheme.colorScheme.primary
         ),
@@ -87,7 +88,8 @@ fun MyCityApp(
         topBar = {
             MyCityAppBar(
                 canNavigateBack = navController.previousBackStackEntry != null,
-                navigateUp = { navController.navigateUp() }
+                navigateUp = { navController.navigateUp() },
+                headerResId = R.string.app_name /*TODO fix this to change accordingly*/
             )
         }
     ) { innerPadding ->
@@ -108,7 +110,10 @@ fun MyCityApp(
             composable(route = MyCityScreen.RECOMMENDATION.name) {
                 RecommendationListScreen(
                     recommendationList = uiState.recommendationList,
-                    onCardClick = {}
+                    onCardClick = {
+                        viewModel.setRecommendation(it)
+                        navController.navigate(MyCityScreen.DETAIL.name)
+                    }
                 )
             }
         }
