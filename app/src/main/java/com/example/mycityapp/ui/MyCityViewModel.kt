@@ -1,9 +1,6 @@
 package com.example.mycityapp.ui
 
-import android.media.MediaRouter.RouteCategory
 import androidx.annotation.StringRes
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.ViewModel
 import com.example.mycityapp.R
 import com.example.mycityapp.data.DataSource
