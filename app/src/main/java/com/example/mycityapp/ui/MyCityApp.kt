@@ -126,6 +126,11 @@ fun MyCityApp(
                     }
                 )
             }
+            composable(route = MyCityScreen.DETAIL.name) {
+                DetailsScreen(
+                    recommendation = uiState.currentRecommendation
+                )
+            }
         }
 
     }
