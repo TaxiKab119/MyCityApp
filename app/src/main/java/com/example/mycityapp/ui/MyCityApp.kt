@@ -1,6 +1,7 @@
 package com.example.mycityapp.ui
 
 import androidx.annotation.StringRes
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons

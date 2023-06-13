@@ -46,8 +46,9 @@ fun RecommendationListScreen(
             RecommendationCard(
                 recommendation = recommendation,
                 selected = false,
-                onCardClick = onCardClick,
-                modifier = Modifier.padding(8.dp)
+                onCardClick = { onCardClick(recommendation) },
+                modifier = Modifier.padding(8.dp),
+                key = recommendation.id
             )
         }
     }
@@ -64,11 +65,12 @@ fun RecommendationCard(
     recommendation: Recommendation,
     selected: Boolean,
     onCardClick: (Recommendation) -> Unit,
+    key: Int,
     modifier: Modifier = Modifier
 ) {
     Card(
         modifier = modifier
-            .clickable { onCardClick },
+            .clickable { onCardClick(recommendation) },
         colors = CardDefaults.cardColors(
             containerColor = if (selected)
                 MaterialTheme.colorScheme.tertiaryContainer
@@ -106,7 +108,8 @@ fun RecommendationCardPreview() {
         RecommendationCard(
             recommendation = DataSource.defaultRecommendation,
             selected = false,
-            onCardClick = {}
+            onCardClick = {},
+            key = DataSource.defaultRecommendation.id
         )
     }
 }
