@@ -90,7 +90,8 @@ fun DetailsScreenPreview() {
             topBar = {
                 MyCityAppBar(
                     canNavigateBack = true,
-                    headerResId = DataSource.defaultCategory.titleResourceId
+                    headerResId = DataSource.defaultCategory.titleResourceId,
+                    currentScreen = MyCityScreen.DETAIL
                 )
             }
         ) { innerPadding ->

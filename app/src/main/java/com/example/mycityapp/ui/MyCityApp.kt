@@ -1,8 +1,6 @@
 package com.example.mycityapp.ui
 
 import androidx.annotation.StringRes
-import androidx.compose.foundation.gestures.scrollable
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -28,17 +26,16 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.mycityapp.R
-import com.example.mycityapp.ui.utils.MyCityAppContentType
 
-enum class MyCityScreen(val route: String) {
-    CATEGORY("category"),
-    RECOMMENDATION("recommendation"),
-    DETAIL("detail")
+enum class MyCityScreen {
+    CATEGORY,
+    RECOMMENDATION,
+    DETAIL
 }
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyCityAppBar(
-//    currentScreen: MyCityScreen,
+    currentScreen: MyCityScreen,
     canNavigateBack: Boolean,
     navigateUp: () -> Unit = {},
     @StringRes headerResId: Int,
@@ -82,9 +79,9 @@ fun MyCityApp(
     modifier: Modifier = Modifier
 ) {
     val backStackEntry by navController.currentBackStackEntryAsState()
-//    val currentScreen = MyCityScreen.valueOf(
-//        backStackEntry?.destination?.route ?: MyCityScreen.CATEGORY.name
-//    )
+    val currentScreen = MyCityScreen.valueOf(
+        backStackEntry?.destination?.route ?: MyCityScreen.CATEGORY.name
+    )
 
     val uiState by viewModel.uiState.collectAsState()
 
@@ -100,7 +97,11 @@ fun MyCityApp(
             MyCityAppBar(
                 canNavigateBack = navController.previousBackStackEntry != null,
                 navigateUp = { navController.navigateUp() },
-                headerResId = R.string.app_name /*TODO fix this to change accordingly*/
+                currentScreen = currentScreen,
+                headerResId = if (currentScreen == MyCityScreen.CATEGORY)
+                    R.string.app_name
+                else
+                    uiState.headerTitleId
             )
         }
     ) { innerPadding ->

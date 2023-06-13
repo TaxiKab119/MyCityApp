@@ -22,11 +22,14 @@ class MyCityViewModel : ViewModel() {
 
 
     /**
-     * Set the category that is clicked by the user
+     * Set the category that is clicked by the user and update header
      * */
     fun setCategory(selectedCategory: Category) {
         _uiState.update {
-            it.copy(currentCategory = selectedCategory)
+            it.copy(
+                currentCategory = selectedCategory,
+                headerTitleId = selectedCategory.titleResourceId
+            )
         }
         updateRecommendationListData(selectedCategory.titleResourceId)
     }
@@ -34,7 +37,6 @@ class MyCityViewModel : ViewModel() {
     /**
      * Set the recommendation that is clicked by the user
      * */
-    /* TODO */
     fun setRecommendation(selectedRecommendation: Recommendation) {
         _uiState.update {
             it.copy(currentRecommendation = selectedRecommendation)

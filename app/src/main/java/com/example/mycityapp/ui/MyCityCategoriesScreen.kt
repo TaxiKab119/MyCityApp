@@ -110,7 +110,8 @@ fun CategoryListContentPreview() {
             topBar = {
                 MyCityAppBar(
                     canNavigateBack = false,
-                    headerResId = R.string.app_name
+                    headerResId = R.string.app_name,
+                    currentScreen = MyCityScreen.CATEGORY
                 )
             }
         ) { innerPadding ->
