@@ -40,5 +40,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MyCityAppPreview() {
     MyCityAppTheme {
+        MyCityApp(windowSize = WindowWidthSizeClass.Compact)
     }
 }

@@ -1,26 +1,26 @@
 package com.example.mycityapp.ui
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.compose.MyCityAppTheme
-import com.example.mycityapp.R
 import com.example.mycityapp.data.DataSource
 import com.example.mycityapp.data.MyCityUiState
 import com.example.mycityapp.model.Recommendation
@@ -35,13 +35,24 @@ fun RecommendationListAndDetail(
 }
 
 
-/* TODO */
 @Composable
-fun RecommendationListOnly(
-    myCityUiState: MyCityUiState,
-    onRecommendationCardPressed: (Recommendation) -> Unit,
+fun RecommendationListScreen(
+    recommendationList: List<Recommendation>,
+    onCardClick: (Recommendation) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    LazyColumn(modifier = modifier) {
+        items(recommendationList) {recommendation ->
+            RecommendationCard(
+                recommendation = recommendation,
+                selected = false,
+                onCardClick = { onCardClick(recommendation) },
+                modifier = Modifier.padding(8.dp),
+                key = recommendation.id
+            )
+        }
+    }
+
 }
 
 
@@ -53,18 +64,22 @@ fun RecommendationListOnly(
 fun RecommendationCard(
     recommendation: Recommendation,
     selected: Boolean,
-    onCardClick: () -> Unit,
+    onCardClick: (Recommendation) -> Unit,
+    key: Int,
     modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = modifier,
+        modifier = modifier
+            .clickable { onCardClick(recommendation) },
         colors = CardDefaults.cardColors(
             containerColor = if (selected)
-                MaterialTheme.colorScheme.primaryContainer
+                MaterialTheme.colorScheme.tertiaryContainer
             else
                 MaterialTheme.colorScheme.secondaryContainer
         ),
-        onClick = onCardClick
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 6.dp
+        )
     ) {
         Column {
             Image(
@@ -93,7 +108,8 @@ fun RecommendationCardPreview() {
         RecommendationCard(
             recommendation = DataSource.defaultRecommendation,
             selected = false,
-            onCardClick = {}
+            onCardClick = {},
+            key = DataSource.defaultRecommendation.id
         )
     }
 }
