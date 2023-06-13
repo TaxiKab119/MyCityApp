@@ -22,6 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.compose.MyCityAppTheme
+import com.example.mycityapp.R
 import com.example.mycityapp.data.DataSource
 import com.example.mycityapp.model.Category
 
@@ -56,9 +57,12 @@ fun CategoryCard(
             .clickable { onCardClick(category) },
         colors = CardDefaults.cardColors(
             containerColor = if (selected)
-                MaterialTheme.colorScheme.primaryContainer
+                MaterialTheme.colorScheme.tertiaryContainer
             else
                 MaterialTheme.colorScheme.secondaryContainer
+        ),
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 6.dp
         )
     ) {
         Row(
@@ -70,12 +74,12 @@ fun CategoryCard(
             Icon(
                 painter = painterResource(id = category.icon),
                 modifier = Modifier
-                    .size(48.dp),
+                    .size(24.dp),
                 contentDescription = stringResource(id = category.titleResourceId)
             )
             Text(
                 text = stringResource(id = category.titleResourceId),
-                style = MaterialTheme.typography.displayMedium,
+                style = MaterialTheme.typography.headlineMedium,
                 modifier = Modifier.padding(start = 12.dp)
             )
 
@@ -105,7 +109,8 @@ fun CategoryListContentPreview() {
         Scaffold(
             topBar = {
                 MyCityAppBar(
-                    canNavigateBack = false
+                    canNavigateBack = false,
+                    headerResId = R.string.app_name
                 )
             }
         ) { innerPadding ->
